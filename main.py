@@ -1,16 +1,25 @@
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+import KnnRegressor
+import Util
 
 
-def knn_regression(file_name):
-    raw_data = pd.read_csv(file_name, index_col=0)
-    print(raw_data)
+def do_first_task():
+    filename = "resources/yacht_hydrodynamics.data"
+    feature_names = ["long_position", "prismatic_coef", "len_to_displacement", "beam_to_draught", "len_to_beam",
+                     "froude_num"]
+    target_name = ["residuary_resist"]
+    yacht_data = Util.read_file(filename, ' ', feature_names + target_name)
+
+    KnnRegressor.knn_regression(yacht_data, feature_names, target_name)
 
 
-# Press the green button in the gutter to run the script.
+def do_second_task():
+    filename = "resources/balance-scale.data"
+    feature_names = ["left_weight", "left-distance", "right-weight", "right-distance"]
+    target_name = ["scale"]
+    balance_data = Util.read_file(filename, ',', target_name + feature_names)
+    print(balance_data)
+
+
 if __name__ == '__main__':
-    knn_regression("resources/yacht_hydrodynamics.data")
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    # do_first_task()
+    do_second_task()
